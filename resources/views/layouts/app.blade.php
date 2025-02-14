@@ -17,7 +17,14 @@
 </head>
 
 <body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-50">
+    <div class="min-h-screen bg-gray-50" x-data="{ sidebarOpen: false }">
+        <!-- Overlay untuk mobile -->
+        <div x-show="sidebarOpen" x-transition:enter="transition-opacity ease-linear duration-300"
+            x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+            x-transition:leave="transition-opacity ease-linear duration-300" x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0" class="fixed inset-0 bg-gray-600 bg-opacity-75 lg:hidden"
+            @click="sidebarOpen = false">
+        </div>
         <!-- Sidebar untuk desktop -->
         <div class="hidden lg:fixed lg:inset-y-0 lg:flex lg:w-64">
             <div class="flex flex-col flex-grow border-r border-gray-200 bg-white pt-5 pb-4 overflow-y-auto">
@@ -89,13 +96,31 @@
         </div>
 
         <!-- Mobile menu -->
-        <div class="lg:hidden">
-            <div class="fixed inset-0 flex z-40">
-                <div class="fixed inset-0">
-                    <div class="absolute inset-0 bg-gray-600 opacity-75"></div>
+        <div x-show="sidebarOpen" x-transition:enter="transition ease-in-out duration-300 transform"
+            x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
+            x-transition:leave="transition ease-in-out duration-300 transform" x-transition:leave-start="translate-x-0"
+            x-transition:leave-end="-translate-x-full" class="fixed inset-y-0 flex z-40 w-64 lg:hidden">
+
+            <div class="relative flex-1 flex flex-col max-w-xs w-full bg-white">
+                <!-- Close button -->
+                <div class="absolute top-0 right-0 -mr-12 pt-2">
+                    <button @click="sidebarOpen = false"
+                        class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                        <span class="sr-only">Close sidebar</span>
+                        <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
                 </div>
-                <div class="relative flex-1 flex flex-col max-w-xs w-full bg-white">
-                    <nav class="flex-1 px-2 space-y-1">
+
+                <!-- Sidebar content -->
+                <div class="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
+                    <div class="flex-shrink-0 flex items-center px-4">
+                        <span class="text-2xl font-bold text-indigo-600">{{ config('app.name', 'Laravel') }}</span>
+                    </div>
+                    <nav class="mt-5 flex-1 px-2 space-y-1">
                         @auth
                             @if (Auth::user()->role === 'admin')
                                 <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')"
@@ -162,7 +187,7 @@
         <div class="lg:pl-64 flex flex-col flex-1">
             <!-- Top navbar -->
             <div class="sticky top-0 z-10 flex-shrink-0 flex h-16 bg-white shadow">
-                <button type="button"
+                <button @click="sidebarOpen = !sidebarOpen" type="button"
                     class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 lg:hidden">
                     <span class="sr-only">Open sidebar</span>
                     <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
