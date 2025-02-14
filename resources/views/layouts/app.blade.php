@@ -35,7 +35,7 @@
                     <nav class="flex-1 px-2 space-y-1">
                         @auth
                             @if (Auth::user()->role === 'admin')
-                                <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')"
+                                <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard.index')"
                                     class="group flex items-center px-2 py-2 text-sm font-medium rounded-md">
                                     <svg class="mr-3 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
