@@ -2,14 +2,14 @@
 Aplikasi web untuk manajemen absensi karyawan yang dibangun menggunakan Laravel 11 dan Tailwind CSS.
 Fitur Utama
 
-Autentikasi (Login & Role)
+## Autentikasi (Login & Role)
 
 Login Admin untuk melihat laporan dan mengelola data
 Login Karyawan menggunakan NIK/Nama
 Role berbasis middleware (Admin & Karyawan)
 
 
-Absensi Karyawan
+## Absensi Karyawan
 
 Check-in & Check-out dengan timestamp otomatis
 Validasi absensi (mencegah check-in ganda)
@@ -17,7 +17,7 @@ Status absensi realtime
 Manajemen shift kerja
 
 
-Fitur Izin & Cuti
+## Fitur Izin & Cuti
 
 Form pengajuan izin/cuti
 Persetujuan izin oleh admin
@@ -25,7 +25,7 @@ Tracking status pengajuan
 Validasi periode izin/cuti
 
 
-Laporan & Rekap
+## Laporan & Rekap
 
 Rekap absensi per karyawan
 Filter berdasarkan periode
@@ -33,7 +33,7 @@ Export laporan ke Excel
 Statistik kehadiran
 
 
-Dashboard Admin
+## Dashboard Admin
 
 Overview jumlah karyawan
 Monitoring absensi harian
@@ -42,7 +42,7 @@ Manajemen shift kerja
 
 
 
-Teknologi
+## Teknologi
 
 Laravel 11
 Tailwind CSS
@@ -77,7 +77,7 @@ php artisan serve
 npm run dev
 ```
 
-Penggunaan
+## Penggunaan
 Admin
 
 Login sebagai admin
@@ -93,5 +93,5 @@ Lakukan check-in/check-out
 Ajukan izin/cuti
 Lihat riwayat absensi
 
-Lisensi
+## Lisensi
 The Laravel framework is open-sourced software licensed under the MIT license.
