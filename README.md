@@ -1,7 +1,3 @@
-Berikut adalah README yang lebih menarik dan profesional untuk aplikasi absensi karyawan berbasis Laravel 11:  
-
----
-
 # 🚀 Aplikasi Absensi Karyawan  
 Sistem manajemen absensi berbasis web yang dibangun dengan **Laravel 11** dan **Tailwind CSS**, dirancang untuk memudahkan perusahaan dalam mengelola kehadiran karyawan secara efisien dan akurat.  
 
