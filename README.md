@@ -92,7 +92,7 @@ Sekarang aplikasi siap digunakan! 🎉
 🔹 **Generate laporan absensi**  
 
 ### 👨‍💻 **Karyawan**  
-🔹 Login menggunakan **NIK/Nama**  
+🔹 Login menggunakan **Email**  
 🔹 **Check-in & Check-out** sesuai jam kerja  
 🔹 **Ajukan izin/cuti** melalui aplikasi  
 🔹 **Lihat riwayat absensi pribadi**  
