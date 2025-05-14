@@ -12,7 +12,7 @@ class AbsensiController extends Controller
 {
     public function index()
     {
-        $user = auth()->user();
+        $user = Auth::user();
         $today = Carbon::today();
         $isOnLeave = $user->isOnLeaveToday();
         $todayAbsensi = Absensi::where('user_id', $user->id)
@@ -33,7 +33,8 @@ class AbsensiController extends Controller
 
     public function checkIn(Request $request)
     {
-        $user = auth()->user();
+        date_default_timezone_set('Asia/Jakarta');
+        $user = Auth::user();
         if ($user->isOnLeaveToday()) {
             return back()->with('error', 'Anda sedang dalam masa izin/cuti');
         }
@@ -59,12 +60,11 @@ class AbsensiController extends Controller
         $jamMasukShift = Carbon::parse($karyawanShift->shift->jam_masuk);
         $batasAwal = $jamMasukShift->copy()->subHours(2); // Izinkan check-in 2 jam sebelum jadwal
         $batasAkhir = $jamMasukShift->copy()->addHours(4); // Izinkan check-in sampai 4 jam setelah jadwal
-
-        if ($now->lt($batasAwal)) {
+        if ($now < $batasAwal) {
             return back()->with('error', 'Terlalu dini untuk melakukan check-in. Waktu check-in dibuka 2 jam sebelum jadwal.');
         }
 
-        if ($now->gt($batasAkhir)) {
+        if ($now > $batasAkhir) {
             return back()->with('error', 'Sudah melewati batas waktu check-in.');
         }
 
@@ -85,7 +85,7 @@ class AbsensiController extends Controller
 
     public function checkOut()
     {
-        $user = auth()->user();
+        $user = Auth::user();
         if ($user->isOnLeaveToday()) {
             return back()->with('error', 'Anda sedang dalam masa izin/cuti');
         }
