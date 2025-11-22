@@ -85,6 +85,7 @@ class AbsensiController extends Controller
 
     public function checkOut()
     {
+        date_default_timezone_set('Asia/Jakarta');
         $user = Auth::user();
         if ($user->isOnLeaveToday()) {
             return back()->with('error', 'Anda sedang dalam masa izin/cuti');
